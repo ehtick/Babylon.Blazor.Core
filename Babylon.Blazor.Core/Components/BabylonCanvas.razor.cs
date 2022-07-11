@@ -28,13 +28,13 @@ namespace Babylon.Blazor.Core.Components
                 var camera = await Babylon.CreateArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, cameraTarget, scene, canvasId);
                 var hemisphericLightDirection = await Babylon.CreateVector3(1, 1, 0);
                 var light1 = await Babylon.CreateHemispehericLight("light1", hemisphericLightDirection, scene);
-                var pointLightDirection = await Babylon.CreateVector3(0, 1, -1);
+                //var pointLightDirection = await Babylon.CreateVector3(0, 1, -1);
                 //var light2 = await Babylon.CreatePointLight("light2", pointLightDirection, scene);
                 // 居然是动态？？
-                var sphereOptions = new ExpandoObject();
-                sphereOptions.TryAdd("diameter", 2);
-                //var sphere = await Babylon.CreateSphere("sphere", sphereOptions, scene);
-                var box = await Babylon.CreateBox("Box", 2, 3, 4);
+                //var sphereOptions = new ExpandoObject();
+                //sphereOptions.TryAdd("diameter", 2);
+                ////var sphere = await Babylon.CreateSphere("sphere", sphereOptions, scene);
+                //var box = await Babylon.CreateBox("Box", 2, 3, 4);
                 //box.
                 await engine.RunRenderLoop(scene);
             }
