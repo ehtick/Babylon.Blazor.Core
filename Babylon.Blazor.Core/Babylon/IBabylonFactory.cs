@@ -12,6 +12,9 @@ namespace Babylon.Blazor.Core.Babylon
         Task<Scene> CreateScene(Engine engine);
         Task<Mesh> CreateSphere(string name, ExpandoObject options, Scene scene);
         Task<Vector3> CreateVector3(double x, double y, double z);
-        Task<Box> CreateBox(string name, double width = 1, double height = 1, double depth = 1, double x = 0, double y = 0, double z = 0);
+        Task<Box> CreateBox(Scene scene, string name, double width = 1, double height = 1, double depth = 1, double x = 0, double y = 0, double z = 0, double rx = 0, double ry = 0, double rz = 0, double r = 100, double g = 100, double b = 100);
+        Task DisposeObj(BabylonObject obj);
+
+        Task ShowAxes(Scene scene, int size);
     }
 }

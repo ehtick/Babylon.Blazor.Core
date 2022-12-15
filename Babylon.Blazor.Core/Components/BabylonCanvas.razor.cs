@@ -12,6 +12,8 @@ namespace Babylon.Blazor.Core.Components
         [Parameter] public string Class { get; set; } = "";
         [Parameter] public string Style { get; set; } = "";
 
+        public Scene Scene;
+
         protected async override Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
@@ -23,11 +25,14 @@ namespace Babylon.Blazor.Core.Components
                 //var canvasId = "babylon-canvas";
                 var canvasId = Id;
                 var engine = await Babylon.CreateEngine(canvasId, true);
-                var scene = await Babylon.CreateScene(engine);
+                Scene = await Babylon.CreateScene(engine);
                 var cameraTarget = await Babylon.CreateVector3(0, 0, 5);
-                var camera = await Babylon.CreateArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, cameraTarget, scene, canvasId);
-                var hemisphericLightDirection = await Babylon.CreateVector3(1, 1, 0);
-                var light1 = await Babylon.CreateHemispehericLight("light1", hemisphericLightDirection, scene);
+                var camera = await Babylon.CreateArcRotateCamera("Camera",  -Math.PI / 2.2, Math.PI / 2.5, 10, cameraTarget, Scene, canvasId);
+                var hemisphericLightDirection = await Babylon.CreateVector3(1, 1, 1);
+                var hemisphericLightDirection1 = await Babylon.CreateVector3(-1, -1, -1);
+                var light1 = await Babylon.CreateHemispehericLight("light1", hemisphericLightDirection, Scene);
+                var light2 = await Babylon.CreateHemispehericLight("light2", hemisphericLightDirection1, Scene);
+
                 //var pointLightDirection = await Babylon.CreateVector3(0, 1, -1);
                 //var light2 = await Babylon.CreatePointLight("light2", pointLightDirection, scene);
                 // 居然是动态？？
@@ -36,8 +41,11 @@ namespace Babylon.Blazor.Core.Components
                 ////var sphere = await Babylon.CreateSphere("sphere", sphereOptions, scene);
                 //var box = await Babylon.CreateBox("Box", 2, 3, 4);
                 //box.
-                await engine.RunRenderLoop(scene);
+                await engine.RunRenderLoop(Scene);
+                await Babylon.ShowAxes(Scene, 20);
+
             }
+
         }
 
         public async Task cc()
@@ -45,7 +53,7 @@ namespace Babylon.Blazor.Core.Components
             Random random = new Random();
             for (int i = 0; i < 1000; i++)
             {
-                var box = await Babylon.CreateBox("Box", random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5);
+                // var box = await Babylon.CreateBox("Box", random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5, random.NextDouble() * 5);
                 StateHasChanged();
                 await Task.Delay(10);
             }

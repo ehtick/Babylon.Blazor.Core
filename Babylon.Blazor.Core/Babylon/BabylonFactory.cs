@@ -48,9 +48,21 @@ namespace Babylon.Blazor.Core.Babylon
             return new Vector3(_jsRuntime, await _jsRuntime.InvokeAsync<JsRuntimeObjectRef>("babylonInterop.createVector3", x, y, z));
         }
 
-        public async Task<Box> CreateBox(string name, double width = 1, double height = 1, double depth = 1, double x = 0, double y = 0, double z = 0)
+        public async Task<Box> CreateBox(Scene scene, string name, double width = 1, double height = 1, double depth = 1, double x = 0, double y = 0, double z = 0, double rx = 0, double ry = 0, double rz = 0, double r = 100, double g = 100, double b = 100)
         {
-            return new Box(_jsRuntime, await _jsRuntime.InvokeAsync<JsRuntimeObjectRef>("babylonInterop.createBox", name, width, height, depth, x, y, z));
+            return new Box(_jsRuntime, await _jsRuntime.InvokeAsync<JsRuntimeObjectRef>("babylonInterop.createBox", scene, name, width, height, depth, x, y, z, rx, ry, rz, r, g, b));
+        }
+
+        public async Task DisposeObj(BabylonObject obj)
+        {
+            await _jsRuntime.InvokeAsync<JsRuntimeObjectRef>("babylonInterop.disposeObj", obj);
+            return;
+        }
+
+        public async Task ShowAxes(Scene scene, int size)
+        {
+            await _jsRuntime.InvokeAsync<JsRuntimeObjectRef>("babylonInterop.showAxes", scene, size);
+
         }
     }
 }
