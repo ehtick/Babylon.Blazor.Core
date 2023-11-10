@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System.Drawing;
 using System.Dynamic;
 using System.Threading.Tasks;
 
@@ -62,6 +63,12 @@ namespace Babylon.Blazor.Core.Babylon
         public async Task ShowAxes(Scene scene, int size)
         {
             await _jsRuntime.InvokeAsync<JsRuntimeObjectRef>("babylonInterop.showAxes", scene, size);
+
+        }
+
+        public async Task SetSkyBox(Scene scene, double r = 100, double g = 100, double b = 100)
+        {
+            await _jsRuntime.InvokeAsync<JsRuntimeObjectRef>("babylonInterop.setSkyBox", scene, r, g, b);
 
         }
     }
