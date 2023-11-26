@@ -19,7 +19,7 @@ namespace Babylon.Blazor.Core.Components
             var canvasId = Id;
             Engine = await Babylon.CreateEngine(canvasId, true);
             Scene = await Babylon.CreateScene(Engine);
-            var cameraTarget = await Babylon.CreateVector3(0, 0, 2);
+            var cameraTarget = await Babylon.CreateVector3(0, 0, 0);
             var camera = await Babylon.CreateArcRotateCamera("Camera", -Math.PI / 2.2, Math.PI / 2.5, 10, cameraTarget, Scene, canvasId);
             var hemisphericLightDirection = await Babylon.CreateVector3(1, 1, 1);
             var hemisphericLightDirection1 = await Babylon.CreateVector3(-1, -1, -1);

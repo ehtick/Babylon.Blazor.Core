@@ -61,9 +61,13 @@ babylonInterop.createArcRotateCamera = function (name, alpha, beta, radius, targ
     var camera = new BABYLON.ArcRotateCamera(name, alpha, beta, radius, target, scene);
     var canvas = document.getElementById(canvasId);
     camera.attachControl(canvas, true);
+    camera.wheelPrecision = 100;
+
     //camera.upperBetaLimit = 180;
     camera.lowerRadiusLimit = 1;
     camera.upperRadiusLimit = 45;
+    camera.inputs.attached.mousewheel.wheelPrecisionY = 200;
+
     camera.upVector = new BABYLON.Vector3(0, 0, 1);
     return babylonInterop.storeObjRef(camera);
 }
